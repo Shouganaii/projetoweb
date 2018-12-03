@@ -1,5 +1,10 @@
 <!DOCTYPE html>
+<?php
+session_start();
+include 'conexao.php';
 
+?>
+ 
 <html>
 <title>Di Mario</title>
 <meta charset="UTF-8">
@@ -54,29 +59,27 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
      
     </div>
 
+    <?php
+  $consulta = $pdo->prepare("SELECT * FROM cardapio");
+  $consulta -> execute();
+
+  $linhas = $consulta -> rowCount();
+
+  foreach ($consulta as $mostra):
+    
+?>
+
     <div id="Pizza" class="w3-container menu w3-padding-32 w3-white">
 
-      <?php
-  $conexao = new PDO('mysql:host=localhost;dbname=dimariobd',"root","");
 
-  $select = $conexao->prepare("SELECT * FROM cardapio");
-  $select ->execute();
-  $fetch = $select ->fetchAll();
+<h1><b><?= $mostra ['nome']?></b> <span class="w3-center w3-tag w3-dark-grey w3-round"><?= number_format($mostra['preco_produto'],2,',','.')?></span> </h1>
+      <a href="carrinho.php?prod=<?= $mostra['id_cardapio']?>"class="w3-right w3-tag w3-red w3-round">Adicionar ao carrinho</a>
+      <p class="w3-text-grey"><?= $mostra['descricao']?></p>
 
-  foreach ($fetch as $produto) {
-    
-    echo $produto ['nome'].' &nbsp';
-    $produto['preco_produto'].
-    <a href="carrinho.php?add=carrinho&id='.$produto['id_cardapio'].'">Adicionar ao carrinho</a>
-  }
-?>
-      <!--
-      <h1><b>Frango</b> <span class="w3-center w3-tag w3-dark-grey w3-round">R$17.00</span> <button type="button" class="w3-right w3-tag w3-red w3-round">COMPRAR</button></h1>
-      <p class="w3-text-grey">Tomates frescos, mussarela, frango, cebola</p>
-      <hr>
--->
     </div>
-
+<?php      
+  endforeach;
+?>
   </div>
 </div>
 
