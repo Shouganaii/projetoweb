@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+
+
 <html>
 <title>Di Mario</title>
 <meta charset="UTF-8">
@@ -45,15 +47,40 @@ td, th {
   <div class="w3-content">
   
     <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">O Cardápio</h1>
-    <div class="">
+<!--
+    <?php 
+
+session_start();
+include 'conexao.php';
+
+$produto= filter_input(INPUT_GET, 'prod');
+
+$consulta = $pdo->prepare("SELECT * FROM cardapio WHERE id_cardapio=:prod");
+$consulta-> bindValue(':prod',$produto);
+  $consulta -> execute();
+
+  $linhas = $consulta -> rowCount();
+
+  foreach ($consulta as $mostra):
+  endforeach;
+
+  
+ ?>
+-->
+
+
+
+<!--
         <table class="w3-red">
   <tr>
-    <th>Nome</th>
-    <th>Quantidade</th>
-    <th>Preço</th>
-     <th>Remover</th>
-  </tr>
+        <td class="bgcolor-gray"><p class="text-center color-dark-full font-text-light"></p>
+        <input type="text" name="produto" value="" style="display:none" ></td>
+        <form method="post">
+        <td class="bgcolor-gray"><p class="text-center color-dark-full font-text-light">
+          <input type="number" name="quantidade"  class="text-center" id="qtd" onchange="acrescentar()">&nbsp;<b><span id="resultado"></span></b> &nbsp;<button class="color-white link-bgcolor-green-dark-b" name="alterar" value="Alterar"> Alterar</button></p>
     </table>
+
+  -->
     </div>
 
   </div>
@@ -65,16 +92,6 @@ td, th {
 
 
 <!-- Footer -->
-<footer class="w3-center w3-black w3-padding-48 w3-xxlarge">
-<div class="w3-container w3-padding-64 w3-blue-grey w3-grayscale-min w3-xlarge"id="googleMap">
-  <div class="w3-content">
-    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Fale Conosco</h1>
-    <p>Encontre-nos em QR 402 - Samambaia Sul, Brasília - DF ou ligue para (61) 99209-5670</p>
-
-  </div>
-</div>
- 
-</footer>
 
 <script>
 // Tabbed Menu
