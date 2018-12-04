@@ -33,3 +33,6 @@ CREATE TABLE cardapio (
     
     primary key (id_cardapio)
 );
+
+INSERT INTO `cardapio` (`id_cardapio`, `nome`, `tipo`, `preco_produto`, `descricao`) 
+VALUES ('p1', 'Frango', 'pizza', '17.00', 'Pizza de frango,com tomates frescos,mussarela,frango e cebola.')
